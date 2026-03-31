@@ -35,18 +35,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (user && isAdminRoute) {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("is_superadmin")
-      .eq("id", user.id)
-      .single();
-
-    if (!profile?.is_superadmin) {
-      return NextResponse.redirect(new URL("/login?error=unauthorized", request.url));
-    }
-  }
-
   if (user && isLoginPage) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
