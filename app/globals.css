@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #0a0a0b;
+  --bg2: #111114;
+  --bg3: #1a1a1f;
+  --border: #2a2a32;
+  --border2: #3a3a45;
+  --text: #e8e8f0;
+  --text2: #9090a8;
+  --text3: #5a5a6e;
+  --accent: #7c6aff;
+  --accent2: #a594ff;
+  --green: #3ddc84;
+  --red: #ff5c5c;
+  --yellow: #ffd166;
+  --cyan: #06d6d6;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+}
+
+code, pre, .mono {
+  font-family: 'Space Mono', monospace;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* Admin layout */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.main-content {
+  margin-left: 240px;
+  flex: 1;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Cards */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.card:hover {
+  border-color: var(--border2);
+}
+
+/* Stat cards */
+.stat-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.stat-card.green::before { background: var(--green); }
+.stat-card.yellow::before { background: var(--yellow); }
+.stat-card.cyan::before { background: var(--cyan); }
+.stat-card.red::before { background: var(--red); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+.btn-primary:hover { background: var(--accent2); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+
+.btn-danger {
+  background: transparent;
+  color: var(--red);
+  border: 1px solid #ff5c5c44;
+}
+.btn-danger:hover { background: #ff5c5c22; }
+
+.btn-success {
+  background: transparent;
+  color: var(--green);
+  border: 1px solid #3ddc8444;
+}
+.btn-success:hover { background: #3ddc8422; }
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text3);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'Space Mono', monospace;
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+  vertical-align: middle;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg3); color: var(--text); }
+
+/* Inputs */
+.input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.input:focus { border-color: var(--accent); }
+.input::placeholder { color: var(--text3); }
+
+textarea.input { resize: vertical; min-height: 80px; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.04em;
+}
+.badge-green { background: #3ddc8422; color: var(--green); }
+.badge-red { background: #ff5c5c22; color: var(--red); }
+.badge-purple { background: #7c6aff22; color: var(--accent2); }
+.badge-yellow { background: #ffd16622; color: var(--yellow); }
+
+/* Page header */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.page-subtitle {
+  font-size: 0.85rem;
+  color: var(--text3);
+  margin-top: 0.2rem;
+  font-family: 'Space Mono', monospace;
+}
+
+/* Nav link */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  color: var(--text3);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 6px;
+  margin: 0.1rem 0.5rem;
+  transition: all 0.15s;
+}
+.nav-link:hover { color: var(--text); background: var(--bg3); }
+.nav-link.active { color: var(--accent2); background: #7c6aff18; }
+
+.nav-section {
+  padding: 0.75rem 1rem 0.25rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+}
+
+/* Loading */
+.loading-spinner {
+  width: 20px; height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text3);
+}
