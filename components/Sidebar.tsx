@@ -24,6 +24,7 @@ const navItems = [
   { href: "/admin/llm-providers", label: "LLM Providers", icon: "⬡" },
   { href: "/admin/llm-models", label: "LLM Models", icon: "◫" },
   { href: "/admin/llm-responses", label: "LLM Responses", icon: "◌" },
+  { href: "/admin/llm-prompt-chains", label: "Prompt Chains", icon: "◌" },
 
   { section: "Access Control" },
   { href: "/admin/allowed-domains", label: "Allowed Domains", icon: "◧" },
