@@ -1,6 +1,6 @@
-import { createClient } from "@/utils/supabase/server";
+import { createDbClient } from "@/utils/supabase/server";
 
-async function getStats(supabase: Awaited<ReturnType<typeof createClient>>) {
+async function getStats(supabase: Awaited<ReturnType<typeof createDbClient>>) {
   const [
     { count: userCount },
     { count: imageCount },
@@ -52,7 +52,7 @@ async function getStats(supabase: Awaited<ReturnType<typeof createClient>>) {
 }
 
 export default async function AdminDashboard() {
-  const supabase = await createClient();
+  const supabase = await createDbClient();
   const stats = await getStats(supabase);
 
   const statCards = [

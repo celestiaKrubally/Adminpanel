@@ -1,6 +1,6 @@
-import { createClient } from "@/utils/supabase/server";
+import { createDbClient } from "@/utils/supabase/server";
 export default async function CaptionsPage() {
-  const supabase = await createClient();
+  const supabase = await createDbClient();
   const { data: captions } = await supabase.from("captions").select("*").order("created_at", { ascending: false });
   return (
     <div>

@@ -1,7 +1,7 @@
-import { createClient } from "@/utils/supabase/server";
+import { createDbClient } from "@/utils/supabase/server";
 
 export default async function HumorFlavorsPage() {
-  const supabase = await createClient();
+  const supabase = await createDbClient();
   const { data: flavors } = await supabase
     .from("humor_flavors")
     .select("*")

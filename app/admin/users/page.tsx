@@ -1,7 +1,7 @@
-import { createClient } from "@/utils/supabase/server";
+import { createDbClient } from "@/utils/supabase/server";
 
 export default async function UsersPage() {
-  const supabase = await createClient();
+  const supabase = await createDbClient();
   const { data: users } = await supabase
     .from("profiles")
     .select("*")

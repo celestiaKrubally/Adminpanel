@@ -1,6 +1,6 @@
-import { createClient } from "@/utils/supabase/server";
+import { createDbClient } from "@/utils/supabase/server";
 export default async function LlmResponsesPage() {
-  const supabase = await createClient();
+  const supabase = await createDbClient();
   const { data } = await supabase.from("llm_responses").select("*").order("created_at", { ascending: false }).limit(100);
   return (
     <div>

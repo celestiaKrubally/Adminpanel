@@ -1,7 +1,7 @@
-import { createClient } from "@/utils/supabase/server";
+import { createDbClient } from "@/utils/supabase/server";
 
 export default async function LlmPromptChainsPage() {
-  const supabase = await createClient();
+  const supabase = await createDbClient();
   const { data } = await supabase
     .from("llm_prompt_chains")
     .select("*")
